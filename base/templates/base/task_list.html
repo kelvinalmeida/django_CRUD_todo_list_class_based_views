@@ -8,9 +8,19 @@
 </head>
 
 <body>
+    {% if request.user.is_authenticated %}
+    <p>{{request.user}}</p>
+    <a href="">Logout</a>
+    {% else %}
+    <a href="">Login</a>
+    <hr>
+    {% endif %}
+
     <table>
         <tr>
             <th>Items</th>
+            <th></th>
+            <th></th>
             <th><a href="{% url 'task-create' %}">Create Item</a></th>
 
         </tr>
@@ -19,6 +29,7 @@
             <td>{{task.title}}</td>
             <td><a href="{% url 'task' task.id %}">View</a></td>
             <td><a href="{% url 'task-update' task.id %}">Edit</a></td>
+            <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
         </tr>
         {% empty %}
         <h3>No items in list</h3>
