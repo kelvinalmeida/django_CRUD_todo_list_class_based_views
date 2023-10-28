@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    width: 30vw;
+    height: 40vh;
+    padding: 10px;
+    border: 1px solid #0d0f0d;
+    box-shadow: -2px -1px 58px -15px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: -2px -1px 58px -15px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -2px -1px 58px -15px rgba(0, 0, 0, 0.75);
+}
+
+.card-box {
+    padding: 5px;
+}
