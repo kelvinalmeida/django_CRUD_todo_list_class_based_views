@@ -14,26 +14,20 @@
 
 <form action="" method="GET">
     <input type="text" name="search-area" value="{{search_input}}">
-    <input type="submit" value="Search">
+    <input type="submit" value="Search" class="myButton">
 </form>
 
-<table>
-    <tr>
-        <th>Items</th>
-        <th></th>
-        <th></th>
-        <th><a href="{% url 'task-create' %}">Create Item</a></th>
+<a href="{% url 'task-create' %}">Create Item</a>
 
-    </tr>
+<div class="my_items">
     {% for task in tasks %}
-    <tr>
-        <td>{{task.title}}</td>
-        <td><a href="{% url 'task-update' task.id %}">Edit</a></td>
-        <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
-    </tr>
-    {% empty %}
-    <h3>No items in list</h3>
+    <div class="one_item">
+        {{task.title}}
+        <a href="{% url 'task-update' task.id %}">Edit</a>
+        <a href="{% url 'task-delete' task.id %}">Delete</a>
+        {% empty %}
+        <h3>No items in list</h3>
+    </div>
     {% endfor %}
-</table>
-
+</div>
 {% endblock %}

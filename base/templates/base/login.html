@@ -1,9 +1,12 @@
+{% extends 'base/main.html'%}
 <h1>Pagina de Login</h1>
 
-<form action="" method="POST">
+{% block content %}
+<form action="" method="POST" style="display: flex;flex-direction: column;align-items: center;">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="Login">
+    <input type="submit" value="Login" class="myButton">
 </form>
 
 <p><a href="{% url 'registro' %}">Registrar</a></p>
+{% endblock %}
