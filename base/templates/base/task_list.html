@@ -1,45 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base/main.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task List</title>
-</head>
+{% block content %}
 
-<body>
-    {% if request.user.is_authenticated %}
-    <p>{{request.user}}</p>
-    <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-    <a href="{% url 'login' %}">Login</a>
-    <hr>
-    {% endif %}
 
-    <form action="" method="GET">
-        <input type="text" name="search-area" value="{{search_input}}">
-        <input type="submit" value="Search">
-    </form>
 
-    <table>
-        <tr>
-            <th>Items</th>
-            <th></th>
-            <th></th>
-            <th><a href="{% url 'task-create' %}">Create Item</a></th>
+{% if request.user.is_authenticated %}
+<p>{{request.user}}</p>
+<a href="{% url 'logout' %}">Logout</a>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+<hr>
+{% endif %}
 
-        </tr>
-        {% for task in tasks %}
-        <tr>
-            <td>{{task.title}}</td>
-            <td><a href="{% url 'task' task.id %}">View</a></td>
-            <td><a href="{% url 'task-update' task.id %}">Edit</a></td>
-            <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
-        </tr>
-        {% empty %}
-        <h3>No items in list</h3>
-        {% endfor %}
-    </table>
-</body>
+<form action="" method="GET">
+    <input type="text" name="search-area" value="{{search_input}}">
+    <input type="submit" value="Search">
+</form>
 
-</html>
+<table>
+    <tr>
+        <th>Items</th>
+        <th></th>
+        <th></th>
+        <th><a href="{% url 'task-create' %}">Create Item</a></th>
+
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{task.title}}</td>
+        <td><a href="{% url 'task-update' task.id %}">Edit</a></td>
+        <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
+    </tr>
+    {% empty %}
+    <h3>No items in list</h3>
+    {% endfor %}
+</table>
+
+{% endblock %}
