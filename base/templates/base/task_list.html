@@ -2,32 +2,35 @@
 
 {% block content %}
 
+<div class="header">
+    {% if request.user.is_authenticated %}
+    <div style="display: flex;justify-content: space-around;align-items: center;margin: 10px;width: 300px;">
+        <h3>User: {{request.user}}</h3>
+        <a class="myButton" href="{% url 'logout' %}">Logout</a>
+    </div>
+    {% else %}
+    <a class="myButton" href="{% url 'login' %}">Login</a>
+    <hr>
+    {% endif %}
 
-
-{% if request.user.is_authenticated %}
-<p>{{request.user}}</p>
-<a href="{% url 'logout' %}">Logout</a>
-{% else %}
-<a href="{% url 'login' %}">Login</a>
-<hr>
-{% endif %}
+    <a class="createButton" href="{% url 'task-create' %}">Create Item</a>
+</div>
 
 <form action="" method="GET">
     <input type="text" name="search-area" value="{{search_input}}">
     <input type="submit" value="Search" class="myButton">
 </form>
 
-<a href="{% url 'task-create' %}">Create Item</a>
-
 <div class="my_items">
     {% for task in tasks %}
     <div class="one_item">
-        {{task.title}}
-        <a href="{% url 'task-update' task.id %}">Edit</a>
-        <a href="{% url 'task-delete' task.id %}">Delete</a>
-        {% empty %}
-        <h3>No items in list</h3>
+
+        <h3>{{task.title}}</h3>
+        <a class="editButton" href="{% url 'task-update' task.id %}">Edit</a>
+        <a class="deleteButton" href="{% url 'task-delete' task.id %}">Delete</a>
     </div>
+    {% empty %}
+    <h3>No items in list</h3>
     {% endfor %}
 </div>
 {% endblock %}

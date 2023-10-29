@@ -2,11 +2,11 @@
 
 {% block content %}
 <h1>Create a Task</h1>
-<a href="{% url 'tasks' %}">Voltar</a>
+<a class="myButton" href="{% url 'tasks' %}">Voltar</a>
 
 <form action="" method="POST">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="Save">
+    <input class="createButton" type="submit" value="Save">
 </form>
 {% endblock %}
